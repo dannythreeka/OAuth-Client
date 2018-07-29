@@ -3,15 +3,15 @@ package com.danny.core
 class OAuthClientConfig(val param: Map<String, String>){
     
     companion object Builder {
-        val param = HashMap<String, String>()
+        private val param = HashMap<String, String>()
 
-        fun setClientKey(clientKey: String): Builder{
-            param.put(OAuthConstant.CLIENT_KEY, clientKey)
+        fun setClientId(clientId: String): Builder{
+            param.put(OAuthConstant.CLIENT_ID, clientId)
             return this
         }
 
         fun setClientSecret(clientSecret: String): Builder{
-            param.put(OAuthConstant.CLIENT_KEY, clientSecret)
+            param.put(OAuthConstant.CLIENT_SECRET, clientSecret)
             return this
         }
 
@@ -28,19 +28,19 @@ class OAuthClientConfig(val param: Map<String, String>){
         fun build(): OAuthClientConfig = OAuthClientConfig(param)
     }
 
-    fun getClientKey(): String?{
-            return param.get(OAuthConstant.CLIENT_KEY)
+    fun getClientId(): String?{
+            return param[OAuthConstant.CLIENT_ID]
     }
 
     fun getClientSecret(): String?{
-        return param.get(OAuthConstant.CLIENT_KEY)
+        return param[OAuthConstant.CLIENT_SECRET]
     }
 
     fun getScope(): String?{
-        return param.get(OAuthConstant.SCOPE)
+        return param[OAuthConstant.SCOPE]
     }
 
     fun getRedirectUri(): String?{
-        return param.get(OAuthConstant.REDIRECT_URI)
+        return param[OAuthConstant.REDIRECT_URI]
     }
 }

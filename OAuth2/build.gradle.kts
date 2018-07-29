@@ -4,7 +4,7 @@ import org.jetbrains.dokka.gradle.DokkaTask
 plugins {
     `build-scan`
     `maven-publish`
-    kotlin("jvm") version "1.2.41"
+    kotlin("jvm") version "1.2.51"
     id("org.jetbrains.dokka") version "0.9.16"
 }
 
@@ -16,8 +16,18 @@ repositories {
 }
 
 dependencies {
-    implementation(kotlin("stdlib", "1.2.31"))
+    // Kotlin
+    implementation(kotlin("stdlib", "1.2.51"))
+
+    // Http
+    implementation("org.apache.httpcomponents:httpclient:4.5.6")
+
+    // Json
+    implementation("com.google.code.gson:gson:2.8.5")
+
+    // Test
     testImplementation("junit:junit:4.12")
+    testImplementation("org.mockito:mockito-all:1.10.19")
 }
 
 // Configure existing Dokka task to output HTML to typical Javadoc directory
