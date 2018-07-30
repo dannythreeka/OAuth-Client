@@ -8,7 +8,12 @@ import org.junit.Test
 import org.junit.Before
 import org.mockito.Matchers.any
 import org.mockito.Mock
+import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
+import org.apache.http.HttpEntity
+import org.apache.http.client.methods.CloseableHttpResponse
+
+
 
 class FacebookOAuthClientTest{
 
@@ -59,9 +64,15 @@ class FacebookOAuthClientTest{
 
     @Test
     fun testNewTokenRequest(){
-        when(defaultHttpClient?.execute(any())).thenReturn(TEST_ACCESS_TOEKN_RESPONSE)
+        var response = Mockito.mock(CloseableHttpResponse::class.java)
+        val entity = Mockito.mock(HttpEntity::class.java)
 
-        val response = FacebookOAuthClient().newTokenRequest(config, TEST_AUTHORIZATION_CODE)
-        assertEquals(TEST_ACCESS_TOEKN_RESPONSE, response)
+        Mockito.`when`(defaultHttpClient?.execute(any())).thenReturn(response)
+        Mockito.`when`(response.statusLine.statusCode).thenReturn(200)
+        Mockito.`when`(response.entity).thenReturn(entity)
+        Mockito.`when`(entity.content).thenReturn(TEST_ACCESS_TOEKN_RESPONSE.byteInputStream())
+
+        val result = FacebookOAuthClient().newTokenRequest(config, TEST_AUTHORIZATION_CODE)
+        assertEquals(TEST_ACCESS_TOEKN_RESPONSE, result)
     }
 }

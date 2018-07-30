@@ -9,7 +9,12 @@ import org.apache.http.client.utils.URIBuilder
 import org.apache.http.util.EntityUtils
 import org.apache.http.impl.client.HttpClients
 
-
+/**
+ * FACEBOOK OAuth Client which provided the OAuth function
+ * For Grant Type: Authorization Code
+ *
+ * @author Danny Wang <dannythreekai@gmail.com>
+ */
 class FacebookOAuthClient: OAuthClient {
 
     private val SCHEME = "https"
