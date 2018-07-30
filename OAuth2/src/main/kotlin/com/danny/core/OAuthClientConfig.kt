@@ -1,5 +1,10 @@
 package com.danny.core
 
+/**
+ * OAuth Client config contains configuration
+ *
+ * @author Danny Wang <dannythreekai@gmail.com>
+ */
 class OAuthClientConfig(val param: Map<String, String>){
     
     companion object Builder {
