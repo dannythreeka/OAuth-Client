@@ -27,7 +27,8 @@ dependencies {
 
     // Test
     testImplementation("junit:junit:4.12")
-    testImplementation("org.mockito:mockito-all:1.10.19")
+    testImplementation("com.nhaarman:mockito-kotlin:1.6.0")
+    testImplementation("io.mockk:mockk:1.8.5")
 }
 
 // Configure existing Dokka task to output HTML to typical Javadoc directory
