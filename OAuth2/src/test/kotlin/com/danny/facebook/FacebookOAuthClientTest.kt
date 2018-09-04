@@ -1,7 +1,7 @@
 package com.danny.facebook
 
 import com.danny.core.OAuthClientConfig
-import com.danny.core.OAuthConstant
+import com.danny.core.OAuthConst
 import io.mockk.MockKAnnotations
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
@@ -18,15 +18,15 @@ import org.apache.http.impl.client.HttpClients
 class FacebookOAuthClientTest{
 
     companion object {
-        const val LOGIN_DIALOG = "https://www.facebook.com:443/v3.1/dialog/oauth?"
-        const val TEST_AUTHORIZATION_CODE = "wertyuiop"
-        const val TEST_CLIENT_ID = "123"
-        const val TEST_CLIENT_SECRET = "abc"
-        const val TEST_CLIENT_SCOPE = "openid"
-        const val TEST_CLIENT_REDIRECT_URI = "danny.com"
-        const val EQUAL_MARK = "="
-        const val AND_MARK = "&"
-        const val TEST_ACCESS_TOKEN_RESPONSE = "{\"access_token\": abc, \"token_type\": \"bearer\", \"expires_in\": 123456}"
+        private const val LOGIN_DIALOG = "https://www.facebook.com:443/v3.1/dialog/oauth?"
+        private  const val TEST_AUTHORIZATION_CODE = "wertyuiop"
+        private  const val TEST_CLIENT_ID = "123"
+        private  const val TEST_CLIENT_SECRET = "abc"
+        private  const val TEST_CLIENT_SCOPE = "openid"
+        private  const val TEST_CLIENT_REDIRECT_URI = "danny.com"
+        private  const val EQUAL_MARK = "="
+        private  const val AND_MARK = "&"
+        private  const val TEST_ACCESS_TOKEN_RESPONSE = "{\"access_token\": abc, \"token_type\": \"bearer\", \"expires_in\": 123456}"
     }
 
     private lateinit var config: OAuthClientConfig
@@ -53,17 +53,17 @@ class FacebookOAuthClientTest{
 
     @Test
     fun testAuthorizeUser(){
-        val uri = FacebookOAuthClient().authorizeUser(config)
+        val uri = FacebookOAuthClient(config).getAuthorizationUrl()
         val expect = StringBuilder(LOGIN_DIALOG)
-                .append(OAuthConstant.CLIENT_ID)
+                .append(OAuthConst.CLIENT_ID)
                 .append(EQUAL_MARK)
                 .append(TEST_CLIENT_ID)
                 .append(AND_MARK)
-                .append(OAuthConstant.SCOPE)
+                .append(OAuthConst.SCOPE)
                 .append(EQUAL_MARK)
                 .append(TEST_CLIENT_SCOPE)
                 .append(AND_MARK)
-                .append(OAuthConstant.REDIRECT_URI)
+                .append(OAuthConst.REDIRECT_URI)
                 .append(EQUAL_MARK)
                 .append(TEST_CLIENT_REDIRECT_URI)
         assertEquals(expect.toString(), uri)
@@ -81,7 +81,7 @@ class FacebookOAuthClientTest{
         every { mockEntity.contentType } returns null
         every { mockEntity.contentLength } returns 0
 
-        val result = FacebookOAuthClient().newTokenRequest(config, TEST_AUTHORIZATION_CODE)
+        val result = FacebookOAuthClient(config).getAccessToken(TEST_AUTHORIZATION_CODE)
         assertEquals(TEST_ACCESS_TOKEN_RESPONSE, result)
     }
 }

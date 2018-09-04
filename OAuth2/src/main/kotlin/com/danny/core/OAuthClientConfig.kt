@@ -5,28 +5,28 @@ package com.danny.core
  *
  * @author Danny Wang <dannythreekai@gmail.com>
  */
-class OAuthClientConfig(val param: Map<String, String>){
+class OAuthClientConfig(private val param: Map<String, String>){
     
     companion object Builder {
         private val param = HashMap<String, String>()
 
         fun setClientId(clientId: String): Builder{
-            param.put(OAuthConstant.CLIENT_ID, clientId)
+            param[OAuthConst.CLIENT_ID] = clientId
             return this
         }
 
         fun setClientSecret(clientSecret: String): Builder{
-            param.put(OAuthConstant.CLIENT_SECRET, clientSecret)
+            param[OAuthConst.CLIENT_SECRET] = clientSecret
             return this
         }
 
         fun setScope(scope: String): Builder{
-            param.put(OAuthConstant.SCOPE, scope)
+            param[OAuthConst.SCOPE] = scope
             return this
         }
 
         fun setRedirectUri(redirectUri: String): Builder{
-            param.put(OAuthConstant.REDIRECT_URI, redirectUri)
+            param[OAuthConst.REDIRECT_URI] = redirectUri
             return this
         }
 
@@ -34,18 +34,18 @@ class OAuthClientConfig(val param: Map<String, String>){
     }
 
     fun getClientId(): String?{
-            return param[OAuthConstant.CLIENT_ID]
+            return param[OAuthConst.CLIENT_ID]
     }
 
     fun getClientSecret(): String?{
-        return param[OAuthConstant.CLIENT_SECRET]
+        return param[OAuthConst.CLIENT_SECRET]
     }
 
     fun getScope(): String?{
-        return param[OAuthConstant.SCOPE]
+        return param[OAuthConst.SCOPE]
     }
 
     fun getRedirectUri(): String?{
-        return param[OAuthConstant.REDIRECT_URI]
+        return param[OAuthConst.REDIRECT_URI]
     }
 }

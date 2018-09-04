@@ -5,7 +5,7 @@ package com.danny.core
  *
  * @author Danny Wang <dannythreekai@gmail.com>
  */
-object OAuthConstant{
+object OAuthConst{
     const val CLIENT_ID = "client_id"
     const val CLIENT_SECRET = "client_secret"
     const val SCOPE = "scope"

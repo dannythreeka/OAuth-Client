@@ -9,13 +9,13 @@ package com.danny.core
 interface OAuthClient {
 
     /**
-     * Authorize user and return the login dialog url
+     * Return the third party authorization login dialog url
      * Note: user need to implement the redirect flow
      *
      * @param client client configuration
      * @return the redirect authorization uri of Auth server
      */
-    fun authorizeUser(client: OAuthClientConfig): String
+    fun getAuthorizationUrl(): String
 
     /**
      * Create new access token from Authorization Code
@@ -24,5 +24,5 @@ interface OAuthClient {
      * @param authorizationCode Authorization Code issued from Auth server
      * @return Access Token Response
      */
-    fun newTokenRequest(client: OAuthClientConfig, authorizationCode: String): String
+    fun getAccessToken(authorizationCode: String): String
 }

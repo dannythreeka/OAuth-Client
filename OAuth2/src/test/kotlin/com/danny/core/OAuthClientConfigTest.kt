@@ -4,10 +4,12 @@ import org.junit.Assert.assertEquals
 import org.junit.Test
 
 class OAuthClientConfigTest{
-    private val TEST_CLIENT_ID = "123"
-    private val TEST_CLIENT_SECRET = "abc"
-    private val TEST_CLIENT_SCOPE = "openid"
-    private val TEST_CLIENT_REDIRECT_URI = "http://danny.com"
+    companion object {
+        private const val TEST_CLIENT_ID = "123"
+        private const val TEST_CLIENT_SECRET = "abc"
+        private const val TEST_CLIENT_SCOPE = "openid"
+        private const val TEST_CLIENT_REDIRECT_URI = "http://danny.com"
+    }
 
     @Test
     fun testOAuthClientConfig(){
